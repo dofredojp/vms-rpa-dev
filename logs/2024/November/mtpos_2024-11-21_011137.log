@@ -1,0 +1,7 @@
+[2024-11-21 01:11:37,325]: [pid-14944]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
+[2024-11-21 01:11:44,313]: [pid-14944]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
+[2024-11-21 01:11:44,313]: [pid-14944]: [INFO]:[login_service.py:10 - login()]: Logging in...
+[2024-11-21 01:11:44,943]: [pid-14944]: [INFO]:[login_service.py:16 - login()]: Login Success!
+[2024-11-21 01:11:45,251]: [pid-14944]: [INFO]:[main.py:24 - process_transaction()]: Kindly wait 5 minutes for voucher to reflect.
+[2024-11-21 01:11:50,253]: [pid-14944]: [INFO]:[voucher_code_files_service.py:13 - apply_filter()]: Applying filter to get vms voucher details
+[2024-11-21 01:11:55,783]: [pid-14944]: [INFO]:[voucher_code_files_service.py:58 - apply_filter()]: Something went wrong

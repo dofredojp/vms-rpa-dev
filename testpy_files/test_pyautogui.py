@@ -65,7 +65,7 @@ def upload_file_via_browser(file_path):
         today = datetime.now().strftime("%Y-%m-%d")
         yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
-        # # Fill out the "Filename" field
+        # Fill out the "Filename" field
         # filename_field = driver.find_element(By.ID, "txt_filename")
         # filename_field.send_keys("vms_vouchercodes_grabtm.20240821.150000.csv.asc")
 

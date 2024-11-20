@@ -1,0 +1,6 @@
+[2024-11-21 00:23:11,300]: [pid-27796]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
+[2024-11-21 00:23:14,357]: [pid-27796]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
+[2024-11-21 00:23:14,357]: [pid-27796]: [INFO]:[login_service.py:10 - login()]: Logging in...
+[2024-11-21 00:23:14,902]: [pid-27796]: [INFO]:[login_service.py:16 - login()]: Login Success!
+[2024-11-21 00:23:15,213]: [pid-27796]: [INFO]:[main.py:24 - process_transaction()]: Kindly wait 5 minutes for voucher to reflect.
+[2024-11-21 00:23:20,215]: [pid-27796]: [INFO]:[voucher_code_files_service.py:13 - apply_filter()]: Apply filter

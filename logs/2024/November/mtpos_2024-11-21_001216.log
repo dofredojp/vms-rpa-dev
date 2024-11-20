@@ -1,0 +1,4 @@
+[2024-11-21 00:12:16,595]: [pid-18388]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
+[2024-11-21 00:12:20,725]: [pid-18388]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
+[2024-11-21 00:12:20,725]: [pid-18388]: [INFO]:[login_service.py:10 - login()]: Logging in...
+[2024-11-21 00:12:21,154]: [pid-18388]: [INFO]:[login_service.py:16 - login()]: Login Success!
