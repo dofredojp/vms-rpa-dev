@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-
+ 
 # Set up Chrome options
 chrome_options = Options()
 chrome_options.add_argument('--ignore-certificate-errors')
