@@ -4,11 +4,10 @@ from util.logger import logger
 class RPAController:
     def __init__(self):
         self.url = "https://10.68.202.204/bus/bus_webtool/"
-        self.wb = WebDriverService()
+        self.driver = WebDriverService()
 
     def initialize_webtool(self):
-        #driver = WebDriverService()
-        self.wb.open_to_chrome(self.url)
+        self.driver.open_to_chrome(self.url)
 
 if __name__ == '__main__':
     rpa = RPAController()

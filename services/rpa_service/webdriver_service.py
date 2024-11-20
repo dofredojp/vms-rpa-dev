@@ -2,10 +2,11 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from RPA.Browser.Selenium import Selenium
+from util.logger import logger
 
 class WebDriverService(Selenium):
     def __init__(self):
-        print("Initializing Web Driver")
+        logger.info("Initializing Web Driver")
         #super().__init__(auto_close=auto_close_browser)
         self.actions = None
         self.__create_driver()
@@ -24,6 +25,9 @@ class WebDriverService(Selenium):
         except Exception as e:
             print("Failed to create chrome driver. Ensure that it is installed properly.")
     
+    
     def open_to_chrome(self, url):
         self.chrome_driver.get(url)
         self.chrome_driver.implicitly_wait("5")
+        logger.info(f"{url} Successfully Reached!")
+        
