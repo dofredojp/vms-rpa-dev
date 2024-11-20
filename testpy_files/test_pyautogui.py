@@ -91,7 +91,7 @@ def upload_file_via_browser(file_path):
 
 
 def main():
-    folder_path = "C:/Users/paul.dofredo_gsuppor/Downloads"  # Path to the folder containing the target file
+    folder_path = "C:/Users/josemari.masangkay_g/Downloads"  # Path to the folder containing the target file
     target_file_prefix = "vms_vouchercodes"
 
     # Locate the target file
