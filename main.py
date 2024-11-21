@@ -23,18 +23,20 @@ class RPAController:
         self.login_service.login()
         self.menu_service.confirm_navigate_page()
     
-    #Function of fetching file > upload file > check for error code
+    #Function of verifying existing voucher code > fetching file > upload file > check for error code
     def process_transactions(self):
         self.voucher_code_file_service.verify_existing_voucher()
         self.voucher_code_file_service.fetch_file()
         file_path = self.voucher_code_file_service.locate_file()
         self.voucher_code_file_service.upload_file_via_browser(file_path)
         logger.info("Kindly wait 5 minutes for voucher to reflect.")
+        
         #Sleep for 5mins. for voucher to reflect
         #Set 3 seconds for testing only.
         time.sleep(3)
         self.voucher_code_file_service.check_error_code()
-        
+    
+    #Function of logout to webtool > quit driver and close browser > delete voucher file in local user dir
     def close_app(self):
         self.login_service.logout()
         self.voucher_code_file_service.delete_voucher_file()
