@@ -8,7 +8,7 @@ import time
 
 class VoucherCodeFileService:
     def __init__(self, wb):
-        self.folder_path = "C:/Users/josemari.masangkay_g/Downloads"
+        self.folder_path = os.environ.get("USERPROFILE")+"\Downloads"
         self.target_file_prefix = "vms_vouchercodes"
         #self.uploaded_filename = "vms_vouchercodes_grabtm.20240821.150000.csv.asc"  # Put filename here
         self.uploaded_filename = ""
