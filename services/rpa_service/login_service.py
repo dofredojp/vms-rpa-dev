@@ -17,4 +17,10 @@ class LoginService:
         logger.info("Login Success!")
         self.wb.chrome_driver.get("https://10.68.202.204/bus/bus_webtool/index.php?mod=vms_voucher_code_files&op=upload")
 
-    #def logout(self)
+    def logout(self):
+        logger.info("Logging out from the webtool")
+        logout_element = self.wb.chrome_driver.find_element(By.PARTIAL_LINK_TEXT, "Logout")
+        logout_element.click()
+        logger.info("Logged out successfully")
+        self.wb.chrome_driver.quit()
+        logger.info("Webtool closed\n VMS flow ended")

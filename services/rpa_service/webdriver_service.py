@@ -23,8 +23,8 @@ class WebDriverService(Selenium):
             #options.add_argument("--headless")
             options.add_argument("--start-maximized")
             #options.add_argument("--window-size=1920,1080")
-            self.chrome_driver = webdriver.Chrome(options=options)
-            #self.chrome_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            #self.chrome_driver = webdriver.Chrome(options=options)
+            self.chrome_driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         except Exception as e:
             logger.info("Failed to create chrome driver. Ensure that it is installed properly.")
     

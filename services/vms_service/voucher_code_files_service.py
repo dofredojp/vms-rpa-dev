@@ -4,11 +4,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from util.logger import logger
 import os
 import sys
+import json
 from datetime import datetime, timedelta
 import time
 
 class VoucherCodeFileService:
     def __init__(self, wb):
+        self.gdrive_url = ""
         self.folder_path = os.environ.get("USERPROFILE")+"\Downloads"
         self.target_file_prefix = "vms_vouchercodes"
         self.uploaded_filename = ""
@@ -16,6 +18,32 @@ class VoucherCodeFileService:
         self.yesterday = (datetime.now() - timedelta(days=1)).strftime("%m-%d-%Y")
         self.wb = wb
 
+    def fetch_file(self):
+        
+        # Web driver wait to confirm if its in the right page
+        WebDriverWait(self.wb.chrome_driver, 5).until(
+            EC.visibility_of_element_located((By.CLASS_NAME, "pagetitle"))
+        )
+        # Read and Access json file
+        test_json_file = 'vms-rpa-dev/test_data/json/test1.json'
+        logger.info("Fetching file..")
+        try:
+            with open(test_json_file, 'r') as file:
+                data = json.load(file)
+            self.gdrive_url = data["create"][0]["voucherFileUrl"]
+            self.wb.chrome_driver.get(self.gdrive_url)
+            time.sleep(2)
+
+        except FileNotFoundError:
+            logger.info("The JSON file was not found.")
+            sys.exit(1)
+        except KeyError:
+            logger.info("The key you are looking for doesn't exist.")
+            sys.exit(1)
+        except json.JSONDecodeError:
+            logger.info("Error decoding the JSON file.")
+            sys.exit(1)
+            
     def locate_file(self):
         file_path_final = ""
         logger.info("Locationg file...")
@@ -25,6 +53,7 @@ class VoucherCodeFileService:
                 self.uploaded_filename = file
                 #Join path with filename
                 file_path_final = os.path.join(self.folder_path, file)
+                self.folder_path_final = file_path_final
                 return file_path_final
             
         if not file_path_final:
@@ -91,8 +120,8 @@ class VoucherCodeFileService:
         row_count_total = len(self.wb.chrome_driver.find_elements(By.XPATH, "(//tbody)[3]//td[1]"))
 
         #option1-Check last row voucher error code (most recent uploaded voucher)
-        get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[" + str(row_count_total) + "]").text
-        #get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[1]").text
+        #get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[" + str(row_count_total) + "]").text
+        get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[1]").text
         get_error_code = int(get_error_code_text)
         get_error_message = self.wb.chrome_driver.find_element(By.XPATH, "(//td[5])[" + str(row_count_total) + "]").text
         
@@ -110,3 +139,12 @@ class VoucherCodeFileService:
         #for i in range(row_count_total):
         #   error_codes = self.wb.chrome_driver.find_elements(By.XPATH, "(//td[4])["+i+"]")
         #   if error_codes > 0: self.wb.chrome_driver.quit()
+    def delete_voucher_file(self):
+        logger.info("Locationg file to delete...")
+        file_path = os.path.join(self.folder_path, self.uploaded_filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.remove(file_path)
+        except Exception as e:
+            logger.info('Failed to delete %s. Reason: %s' % (file_path, e))
+    

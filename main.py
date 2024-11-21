@@ -15,13 +15,14 @@ class RPAController:
         self.login_service = LoginService(self.wb)
         self.voucher_code_file_service = VoucherCodeFileService(self.wb)
 
-    #Function to open browser > redirect > authentication 
+    #Function of open browser > redirect to url > authentication > redirect to vms upload
     def initialize_webtool(self):
         self.wb.open_to_chrome(self.url)
         self.login_service.login()
     
-    #Function to upload file > check for error code (for now)
-    def process_transaction(self):
+    #Function of fetching file > upload file > check for error code
+    def process_transactions(self):
+        self.voucher_code_file_service.fetch_file()
         file_path = self.voucher_code_file_service.locate_file()
         self.voucher_code_file_service.upload_file_via_browser(file_path)
         logger.info("Kindly wait 5 minutes for voucher to reflect.")
@@ -30,7 +31,9 @@ class RPAController:
         time.sleep(3)
         self.voucher_code_file_service.check_error_code()
         
-
+    def close_app(self):
+        self.login_service.logout()
+        self.voucher_code_file_service.delete_voucher_file()
 
 if __name__ == '__main__':
     
@@ -39,4 +42,5 @@ if __name__ == '__main__':
     
     #start RPA process
     rpa.initialize_webtool()
-    rpa.process_transaction()
+    rpa.process_transactions()
+    rpa.close_app()
