@@ -1,2 +1,0 @@
-[2024-11-20 22:03:26,178]: [pid-27572]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
-[2024-11-20 22:03:33,597]: [pid-27572]: [INFO]:[webdriver_service.py:33 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!

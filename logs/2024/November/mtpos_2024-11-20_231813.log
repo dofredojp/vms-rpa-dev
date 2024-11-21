@@ -1,2 +1,0 @@
-[2024-11-20 23:18:13,914]: [pid-18944]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
-[2024-11-20 23:18:17,511]: [pid-18944]: [INFO]:[webdriver_service.py:29 - __create_driver()]: Failed to create chrome driver. Ensure that it is installed properly.

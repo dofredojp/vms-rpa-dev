@@ -1,4 +1,0 @@
-[2024-11-20 23:35:18,475]: [pid-13880]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
-[2024-11-20 23:35:23,459]: [pid-13880]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
-[2024-11-20 23:35:23,459]: [pid-13880]: [INFO]:[login_service.py:10 - login()]: Logging in...
-[2024-11-20 23:35:24,459]: [pid-13880]: [INFO]:[login_service.py:16 - login()]: Login Success!

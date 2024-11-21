@@ -1,7 +1,0 @@
-[2024-11-21 00:46:46,225]: [pid-8708]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
-[2024-11-21 00:46:50,648]: [pid-8708]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
-[2024-11-21 00:46:50,648]: [pid-8708]: [INFO]:[login_service.py:10 - login()]: Logging in...
-[2024-11-21 00:46:51,230]: [pid-8708]: [INFO]:[login_service.py:16 - login()]: Login Success!
-[2024-11-21 00:46:51,615]: [pid-8708]: [INFO]:[main.py:24 - process_transaction()]: Kindly wait 5 minutes for voucher to reflect.
-[2024-11-21 00:46:56,617]: [pid-8708]: [INFO]:[voucher_code_files_service.py:13 - apply_filter()]: Applying filter to get vms voucher details
-[2024-11-21 00:47:02,230]: [pid-8708]: [INFO]:[voucher_code_files_service.py:49 - apply_filter()]: FILE HAS BEEN UPLOADED SUCCESSFULL WITHOUT ISSUES!

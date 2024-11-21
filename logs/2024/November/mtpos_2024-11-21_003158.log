@@ -1,7 +1,0 @@
-[2024-11-21 00:31:58,508]: [pid-1968]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
-[2024-11-21 00:32:01,265]: [pid-1968]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
-[2024-11-21 00:32:01,266]: [pid-1968]: [INFO]:[login_service.py:10 - login()]: Logging in...
-[2024-11-21 00:32:01,954]: [pid-1968]: [INFO]:[login_service.py:16 - login()]: Login Success!
-[2024-11-21 00:32:02,181]: [pid-1968]: [INFO]:[main.py:24 - process_transaction()]: Kindly wait 5 minutes for voucher to reflect.
-[2024-11-21 00:32:07,183]: [pid-1968]: [INFO]:[voucher_code_files_service.py:13 - apply_filter()]: Apply filter
-[2024-11-21 00:32:12,972]: [pid-1968]: [INFO]:[voucher_code_files_service.py:47 - apply_filter()]: FILE HAS BEEN UPLOADED SUCCESSFULL WITHOUT ISSUES!

@@ -1,6 +1,0 @@
-[2024-11-21 01:23:24,417]: [pid-29012]: [INFO]:[webdriver_service.py:10 - __init__()]: Initializing Web Driver
-[2024-11-21 01:23:28,736]: [pid-29012]: [INFO]:[webdriver_service.py:35 - open_to_chrome()]: https://10.68.202.204/bus/bus_webtool/ Successfully Reached!
-[2024-11-21 01:23:28,737]: [pid-29012]: [INFO]:[login_service.py:10 - login()]: Logging in...
-[2024-11-21 01:23:30,058]: [pid-29012]: [INFO]:[login_service.py:16 - login()]: Login Success!
-[2024-11-21 01:23:30,309]: [pid-29012]: [INFO]:[main.py:24 - process_transaction()]: Kindly wait 5 minutes for voucher to reflect.
-[2024-11-21 01:23:35,311]: [pid-29012]: [INFO]:[voucher_code_files_service.py:13 - apply_filter()]: Applying filter to get vms voucher details
