@@ -65,7 +65,7 @@ def upload_file_via_browser(file_path):
         today = datetime.now().strftime("%Y-%m-%d")
         yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
-        # # Fill out the "Filename" field
+        # Fill out the "Filename" field
         # filename_field = driver.find_element(By.ID, "txt_filename")
         # filename_field.send_keys("vms_vouchercodes_grabtm.20240821.150000.csv.asc")
 
@@ -91,7 +91,7 @@ def upload_file_via_browser(file_path):
 
 
 def main():
-    folder_path = "C:/Users/paul.dofredo_gsuppor/Downloads"  # Path to the folder containing the target file
+    folder_path = "C:/Users/josemari.masangkay_g/Downloads"  # Path to the folder containing the target file
     target_file_prefix = "vms_vouchercodes"
 
     # Locate the target file
