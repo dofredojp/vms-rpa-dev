@@ -15,6 +15,6 @@ class LoginService:
         password.send_keys("Jo123jo45!")
         self.wb.chrome_driver.find_element(By.ID, "login-button").click()
         logger.info("Login Success!")
-        self.wb.chrome_driver.get("https://10.68.202.204/bus/bus_webtool/index.php?mod=vms_voucher_code_files")
+        self.wb.chrome_driver.get("https://10.68.202.204/bus/bus_webtool/index.php?mod=vms_voucher_code_files&op=upload")
 
     #def logout(self)

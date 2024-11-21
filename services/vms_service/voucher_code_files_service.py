@@ -2,11 +2,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from util.logger import logger
+import os
 from datetime import datetime, timedelta
+import time
 
 class VoucherCodeFileService:
     def __init__(self, wb):
-        self.uploaded_filename = "vms_vouchercodes_grabtm.20240821.150000.csv.asc"  # Put filename here
+        self.folder_path = "C:/Users/josemari.masangkay_g/Downloads"
+        self.target_file_prefix = "vms_vouchercodes"
+        #self.uploaded_filename = "vms_vouchercodes_grabtm.20240821.150000.csv.asc"  # Put filename here
+        self.uploaded_filename = ""
         self.today = datetime.now().strftime("%m-%d-%Y")
         self.yesterday = (datetime.now() - timedelta(days=1)).strftime("%m-%d-%Y")
         self.wb = wb
@@ -33,6 +38,36 @@ class VoucherCodeFileService:
         # Click Apply button
         apply_button = self.wb.chrome_driver.find_element(By.ID, "search3")
         apply_button.click()
+
+    def locate_file(self):
+
+        for file in os.listdir(self.folder_path):
+            if file.startswith(self.target_file_prefix):
+                #Get the filename
+                self.uploaded_filename = file
+                #Join path with filename
+                return os.path.join(self.folder_path, file)
+        return None
+
+    def upload_file_via_browser(self, file_path):
+        
+        # Locate the file input element and send the file path directly
+        upload_button = self.wb.chrome_driver.find_element(By.NAME, "file")
+        upload_button.send_keys(file_path)  # Send the file path directly
+        time.sleep(2)
+
+                # Submit the form
+        submit_button = self.wb.chrome_driver.find_element(By.XPATH, "//input[@type='submit']")
+        submit_button.click()
+        time.sleep(3)
+
+        # Wait for the success message to appear
+        success_message = WebDriverWait(self.wb.chrome_driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//div[@class='alert alert-success' and text()='Succesfully uploaded file.']"))
+        )
+        print("Message found:", success_message.text)
+        print("File Path: ", file_path)
+
 
     def check_error_code(self):
         
