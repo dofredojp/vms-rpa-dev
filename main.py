@@ -1,5 +1,6 @@
 from services.rpa_service.webdriver_service import WebDriverService
 from services.rpa_service.login_service import LoginService
+from services.rpa_service.menu_service import MenuService
 from selenium.webdriver.support import expected_conditions as EC
 from services.vms_service.voucher_code_files_service import VoucherCodeFileService
 from selenium.webdriver.common.by import By
@@ -12,6 +13,7 @@ class RPAController:
     def __init__(self):
         self.url = "https://10.68.202.204/bus/bus_webtool/"
         self.wb = WebDriverService()
+        self.menu_service = MenuService(self.wb)
         self.login_service = LoginService(self.wb)
         self.voucher_code_file_service = VoucherCodeFileService(self.wb)
 
@@ -19,9 +21,11 @@ class RPAController:
     def initialize_webtool(self):
         self.wb.open_to_chrome(self.url)
         self.login_service.login()
+        self.menu_service.confirm_navigate_page()
     
     #Function of fetching file > upload file > check for error code
     def process_transactions(self):
+        self.voucher_code_file_service.verify_existing_voucher()
         self.voucher_code_file_service.fetch_file()
         file_path = self.voucher_code_file_service.locate_file()
         self.voucher_code_file_service.upload_file_via_browser(file_path)

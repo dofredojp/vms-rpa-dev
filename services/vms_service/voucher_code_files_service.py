@@ -17,13 +17,8 @@ class VoucherCodeFileService:
         self.today = datetime.now().strftime("%m-%d-%Y")
         self.yesterday = (datetime.now() - timedelta(days=1)).strftime("%m-%d-%Y")
         self.wb = wb
-
+    
     def fetch_file(self):
-        
-        # Web driver wait to confirm if its in the right page
-        WebDriverWait(self.wb.chrome_driver, 5).until(
-            EC.visibility_of_element_located((By.CLASS_NAME, "pagetitle"))
-        )
         # Read and Access json file
         test_json_file = 'vms-rpa-dev/test_data/json/test1.json'
         logger.info("Fetching file..")
@@ -120,13 +115,13 @@ class VoucherCodeFileService:
         row_count_total = len(self.wb.chrome_driver.find_elements(By.XPATH, "(//tbody)[3]//td[1]"))
 
         #option1-Check last row voucher error code (most recent uploaded voucher)
-        #get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[" + str(row_count_total) + "]").text
-        get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[1]").text
+        get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[" + str(row_count_total) + "]").text
+        #get_error_code_text = self.wb.chrome_driver.find_element(By.XPATH, "(//td[4])[1]").text
         get_error_code = int(get_error_code_text)
         get_error_message = self.wb.chrome_driver.find_element(By.XPATH, "(//td[5])[" + str(row_count_total) + "]").text
         
  
-        if get_error_code > 0:
+        if get_error_code > 2:
             #logger.info("FOUND ERROR CODE, SEE ERROR DESCRIPTION: " + get_error_message)
             raise Exception("\nERROR CODE: " + str(get_error_code) + "\nERROR DESCRIPTION: " + get_error_message)
             #self.wb.chrome_driver.quit()
@@ -139,12 +134,25 @@ class VoucherCodeFileService:
         #for i in range(row_count_total):
         #   error_codes = self.wb.chrome_driver.find_elements(By.XPATH, "(//td[4])["+i+"]")
         #   if error_codes > 0: self.wb.chrome_driver.quit()
+
+    def verify_existing_voucher(self):
+            logger.info("Verifying if voucher code exist...")
+            file_check = ""
+            for file in os.listdir(self.folder_path):
+                if file.startswith(self.target_file_prefix):
+                    logger.info("Found existing voucher! '"+file+"' voucher has been deleted\n will proceed to vms upload")
+                    file_check = file
+                    os.remove(os.path.join(self.folder_path, file))
+                    break
+            if not file_check: logger.info("No voucher found, will proceed to vms upload")
+
     def delete_voucher_file(self):
-        logger.info("Locationg file to delete...")
+        logger.info("Locating file to delete...")
         file_path = os.path.join(self.folder_path, self.uploaded_filename)
         try:
             if os.path.isfile(file_path) or os.path.islink(file_path):
                 os.remove(file_path)
+                logger.info("Delete successful\n VMS VOUCHER CODE UPLOAD ENDED")
         except Exception as e:
             logger.info('Failed to delete %s. Reason: %s' % (file_path, e))
     

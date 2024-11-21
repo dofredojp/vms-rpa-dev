@@ -23,4 +23,4 @@ class LoginService:
         logout_element.click()
         logger.info("Logged out successfully")
         self.wb.chrome_driver.quit()
-        logger.info("Webtool closed\n VMS flow ended")
+        logger.info("Webtool closed")
