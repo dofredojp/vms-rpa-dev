@@ -20,7 +20,7 @@ class VoucherCodeFileService:
     
     def fetch_file(self):
         # Read and Access json file
-        test_json_file = 'vms-rpa-dev/test_data/json/test1.json'
+        test_json_file = 'test_data/json/test1.json'
         logger.info("Fetching file..")
         try:
             with open(test_json_file, 'r') as file:
